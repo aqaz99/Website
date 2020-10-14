@@ -6,15 +6,25 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
     <style>
-      ul {
+      ul.header {
       list-style-type: none;
       margin: 0;
       padding: 0;
       overflow: hidden;
       background-color: #333;
       }
+      ul.my-list-style {
+   		margin:0;
+    	padding:0;
+    	list-style:none;
+  		border:1px solid #000;
+        list-style-type:none;
+        color: #0000FF;
+        padding: 3px 3px;
+        background-color:powderblue;
+      }
 
-      li {
+      li a {
         float: left;
       }
 
@@ -24,6 +34,11 @@
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
+      }
+
+      ul.my-list-style {
+        list-style-type: none;
+        float:left;
       }
 
       li a:hover {
@@ -43,7 +58,7 @@
     </style>
   </head>
   <body style="background-color:powderblue;">
-    <ul>
+    <ul class="header">
       <li><a href="firstwebpage.html">Home</a></li>
       <li><a href="forms.html">Forms</a></li>
       <li><a href="tables.html">Tables</a></li>
@@ -51,24 +66,27 @@
       <li style ="float:right"><img src="/images/Magnus.jpg" width="38" align="right"></li>
     </ul>
     <hr>
-    <p>Erasmus Database insert</p>
-    <ul>
-    <form name="insert" action="insert.php" method="POST" >
-    <li>Book ID:</li><li><input type="text" name="bookid" /></li>
-    <li>Book Name:</li><li><input type="text" name="book_name" /></li>
-    <li>Author:</li><li><input type="text" name="author" /></li>
-    <li>Publisher:</li><li><input type="text" name="publisher" /></li>
-    <li>Date of publication:</li><li><input type="text" name="dop" /></li>
-    <li>Price (USD):</li><li><input type="text" name="price" /></li>
-    <li><input type="submit" /></li>
-    </form>
+    <h1><strong>Erasmus Database insert</strong></h1>
+    <hr>
+
+    <h3>New underling</h3>
+    <ul class="my-list-style">
+    	<form name="insert" action="insert.php" method="POST" >
+          <li>Name: </li><li><input type="text" name="name" /></li>
+          <li>Race:</li><li><input type="text" name="race" /></li>
+          <li>Gender:</li><li><input type="text" name="gender" /></li>
+          <li>Age:</li><li><input type="text" name="age" /></li>
+          <li>inventory:</li><li><input type="text" name="inventory" /></li>
+          <li>Current_op:</li><li><input type="text" name="current_op" /></li>
+          <li><input type="submit" /></li>
+    	</form>
     </ul>
   </body>
 </html>
 <?php
 $db = pg_connect("host=localhost port=5574 dbname=erasmus user=postgres password=aqazaqaz");
-$query = "INSERT INTO Underling VALUES ('$_POST[bookid]','$_POST[book_name]',
-'$_POST[author]','$_POST[publisher]','$_POST[dop]',
-'$_POST[price]')";
+$query = "INSERT INTO Underling VALUES ('$_POST[name]','$_POST[race]',
+'$_POST[gender]','$_POST[age]','$_POST[inventory]',
+'$_POST[current_op]')";
 $result = pg_query($query);
 ?>
